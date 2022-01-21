@@ -1,9 +1,9 @@
-// import { NavLink } from 'react-router-dom';
-// export default function Navigation() {
-//     return (
-//         <nav>
-//         <NavLink>Home</NavLink>
-//         <NavLink>Movies</NavLink>
-//     </nav>)
-   
-// }
+import { NavLink } from 'react-router-dom';
+export default function Navigation() {
+  return (
+    <nav>
+      <NavLink to="/">Home</NavLink>
+      <NavLink to="/movies">Movies</NavLink>
+    </nav>
+  );
+}
