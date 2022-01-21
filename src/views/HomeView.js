@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import * as moviesAPI from '../services/movies-api';
 
 export default function HomeView() {
-  //  const { url } = useRouteMatch();
   const [films, setFilms] = useState(null);
 
   useEffect(() => {
@@ -20,7 +19,7 @@ export default function HomeView() {
         <ul>
           {films.map(film => (
             <li key={film.id}>
-              <Link to={film.id}>{film.original_title}</Link>
+              <Link to={`movies/${film.id}`}>{film.original_title}</Link>
             </li>
           ))}
         </ul>
