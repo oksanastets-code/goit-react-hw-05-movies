@@ -1,4 +1,4 @@
-export default function MovieView() {
+export default function MoviesView() {
   return (
     <>
       <form>
