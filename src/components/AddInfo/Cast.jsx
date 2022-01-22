@@ -1,4 +1,17 @@
-export default function Cast({ cast }) {
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import * as moviesAPI from '../../services/movies-api';
+
+
+export default function Cast() {
+    let { filmId } = useParams();
+    const [cast, setCast] = useState([]);
+     useEffect(() => {
+    moviesAPI.FetchFilmsCredits(filmId).then(r => {
+      console.log(r.cast);
+      setCast(r.cast);
+    });
+  }, [filmId]);
   return (
     <>
       <p>Cast</p>
