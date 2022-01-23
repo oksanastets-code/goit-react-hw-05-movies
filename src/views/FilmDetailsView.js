@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import * as moviesAPI from '../services/movies-api';
 import FilmDataCard from '../components/FilmDataCard/FilmDataCard.jsx';
 
 export default function FilmDetailsView() {
+  const location = useLocation();
+  console.log(location.state.from);
   let { filmId } = useParams();
   console.log(filmId);
   const [film, setFilm] = useState(null);
@@ -15,8 +17,8 @@ export default function FilmDetailsView() {
 
   return (
     <>
-      {film && <FilmDataCard film={film} />}
-      <Outlet />
+      {film && <FilmDataCard film={film} location={location} />}
+      {/* <Outlet /> */}
     </>
   );
 }
