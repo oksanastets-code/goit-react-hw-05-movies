@@ -1,19 +1,40 @@
 import { useState, useEffect } from 'react';
 // import {useParams } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import * as moviesAPI from '../services/movies-api';
 import SearchBar from '../components/SearchBar/SearchBar';
 import MoviesList from '../components/MoviesList/MoviesList';
 
 export default function MoviesView() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams.get('q')); // ▶ URLSearchParams {}
+
+  useEffect(() => {
+    // read the params on component load and when any changes occur
+    const currentParams = Object.fromEntries([...searchParams]);
+    // get new values on change
+    console.log('useEffect:', currentParams);
+    // update the search params programmatically
+    setSearchParams({ q: `${searchParams.get(`q`)}` });
+  }, [searchParams]);
+
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
+  // const navigate = useNavigate();
+
   const [query, setQuery] = useState('');
   const [searched, setSearched] = useState([]);
 
-  useEffect(() => {
-    setSearched([]);
-  }, [query]);
+  // const memory = new URLSearchParams(location.search).get('query');
+  // console.log(memory);
+  // console.log(location.search);
+  // const rememberQuery = keyWord => {
+  //   navigate({
+  //     ...location,
+  //     search: `query=${keyWord}`
+  //   })
+
+  // }
 
   useEffect(() => {
     if (query === '') {
@@ -30,8 +51,12 @@ export default function MoviesView() {
   };
   return (
     <>
-      <SearchBar onSubmit={handleFormSubmit} />
-      {searched && <MoviesList movies={searched} location={location} />}
+      <SearchBar
+        onSubmit={handleFormSubmit}
+        // onSubmit={rememberQuery}
+        // onMemory={rememberQuery}
+      />
+      {searched && <MoviesList movies={searched} />}
     </>
   );
 }

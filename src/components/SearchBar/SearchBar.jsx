@@ -9,9 +9,10 @@ export default function Searchbar({ onSubmit }) {
     if (keyWord.trim() === '') {
       return;
     }
-    onSubmit(keyWord);
-    setKeyWord('');
-    e.currentTarget.reset();
+      onSubmit(keyWord);
+    //   onMemory(keyWord);
+    // setKeyWord('');
+    // e.currentTarget.reset();
   };
   const handleKeyWordChange = e => {
     setKeyWord(e.currentTarget.value.toLowerCase());
