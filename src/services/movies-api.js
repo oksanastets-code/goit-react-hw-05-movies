@@ -33,9 +33,9 @@ export function FetchFilmsReviews(movieId) {
   );
   // https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key=bffba07cef2d165abd193feceb46d279&language=en-US&page=1
 }
-export function FetchSearchingFilms() {
+export function FetchSearchingFilms(query) {
   return fetchWithErrorHandling(
-    `${BASE_URL}/search/movie?api_key=${API_KEY}&include_adult=false`,
+    `${BASE_URL}/search/movie?query=${query}&api_key=${API_KEY}&include_adult=false`,
   );
   // https://api.themoviedb.org/3/search/movie?api_key=bffba07cef2d165abd193feceb46d279&language=en-US&page=1&include_adult=false
 }
