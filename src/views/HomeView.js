@@ -16,18 +16,7 @@ export default function HomeView() {
   return (
     <>
       <h1>Trending today</h1>
-      {
-        films && <MoviesList movies={films} />
-        //       (
-        // <ul>
-        //   {films.map(film => (
-        //     <li key={film.id}>
-        //       <Link to={`/movies/${film.id}`}>{film.original_title}</Link>
-        //     </li>
-        //   ))}
-        // </ul>
-        //       )
-      }
+      {films && <MoviesList movies={films} />}
     </>
   );
 }

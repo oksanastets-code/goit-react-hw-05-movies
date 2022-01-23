@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-
 // import {useParams } from 'react-router-dom';
 import * as moviesAPI from '../services/movies-api';
 import SearchBar from '../components/SearchBar/SearchBar';
@@ -8,10 +6,10 @@ import MoviesList from '../components/MoviesList/MoviesList';
 
 export default function MoviesView() {
   const [query, setQuery] = useState('');
-  const [searchedMovies, setSearchedMovies] = useState([]);
+  const [searched, setSearched] = useState([]);
 
   useEffect(() => {
-    setSearchedMovies([]);
+    setSearched([]);
   }, [query]);
 
   useEffect(() => {
@@ -21,7 +19,7 @@ export default function MoviesView() {
     moviesAPI
       .FetchSearchingFilms(query)
       .then(r => r.results)
-      .then(setSearchedMovies);
+      .then(setSearched);
   }, [query]);
 
   const handleFormSubmit = keyWord => {
@@ -30,7 +28,7 @@ export default function MoviesView() {
   return (
     <>
       <SearchBar onSubmit={handleFormSubmit} />
-      {searchedMovies && <MoviesList movies={searchedMovies} />}
+      {searched && <MoviesList movies={searched} />}
     </>
   );
 }
