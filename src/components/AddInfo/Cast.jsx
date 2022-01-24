@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as moviesAPI from '../../services/movies-api';
-import { AddTitle, CastList } from './Cast.styled';
+import { AddTitle, CastList } from './CastReview.styled';
 
 
 export default function Cast() {
@@ -23,7 +23,7 @@ export default function Cast() {
             (<img
               src={`https://image.tmdb.org/t/p/w300${profile_path}`}
               alt={{ name }}
-              />) : (<img src={'../../images/avatar.webp'} alt={'No poster'} width={300}/>)}
+              />) : (<img src={'../../images/blank-profile-picture-973461__340.webp'} alt={'No poster'} width={300}/>)}
             <p>Character: {character}</p>
             <p>{name}</p>
           </li>

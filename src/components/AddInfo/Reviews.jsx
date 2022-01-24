@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as moviesAPI from '../../services/movies-api';
+import { AddTitle, ReviewList, ReviewItem } from './CastReview.styled';
+
 export default function Reviews() {
     let { filmId } = useParams();
     const [reviews, setReviews] = useState([]);
@@ -12,15 +14,15 @@ export default function Reviews() {
   }, [filmId]);
   return (
     <>
-      <p>Reviews</p>
-      <ul>
-        {reviews.map(({ id, author, content }) => (
-          <li key={id}>
+      <AddTitle>Reviews</AddTitle>
+      <ReviewList>
+        {reviews.length !==0 ? (reviews.map(({ id, author, content }) => (
+          <ReviewItem key={id}>
             <p>Author: {author}</p>
             <p>{content}</p>
-          </li>
-        ))}
-      </ul>
+          </ReviewItem>
+        ))) : (<p>We haven't had any reviews yet</p>)}
+      </ReviewList>
     </>
   );
 }

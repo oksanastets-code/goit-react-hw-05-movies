@@ -15,3 +15,11 @@ export const CastList = styled.ul`
   margin-left: auto;
   margin-right: auto;
 `;
+export const ReviewList = styled.ul`
+ 
+`;
+export const ReviewItem = styled.li`
+  margin-bottom: 16px;
+  list-style-position: inside; 
+  list-style: none;
+`
