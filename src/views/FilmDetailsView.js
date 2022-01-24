@@ -10,15 +10,12 @@ const FilmDataCard = lazy(() =>
 );
 export default function FilmDetailsView() {
   const location = useLocation();
-  console.log(location);
   const { filmId } = useParams();
   const [film, setFilm] = useState(null);
 
   useEffect(() => {
     moviesAPI.FetchFilmsDetails(filmId).then(r => setFilm(r));
   }, [filmId]);
-
-  console.log(film);
 
   return (
     <>

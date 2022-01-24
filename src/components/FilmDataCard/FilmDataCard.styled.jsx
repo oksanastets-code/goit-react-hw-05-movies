@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 export const FilmCard=styled.div`
     display: flex;
     margin-bottom: 20px;
@@ -30,7 +31,7 @@ export const AddTitle = styled.h4`
     font-size: 22px;
 `;
 export const AddList = styled.ul`
-     margin-bottom: 12px;
+     margin-bottom: 20px;
    list-style-position: inside;
    
 `;
@@ -38,4 +39,17 @@ export const AddItem = styled.li`
      margin-bottom: 12px;
     font-size:18px;
       
+`;
+export const LinkStyle = styled(Link)`
+  color: #2a363b;
+  font-size: 20px;
+  font-weight: 400;
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    color: #dc6300;
+  }
+  /* &:visited {
+    color: #634688;
+  } */
 `;

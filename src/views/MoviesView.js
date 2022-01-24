@@ -12,7 +12,6 @@ export default function MoviesView({ keyword }) {
   const [searchParams] = useSearchParams();
 
   const search = searchParams.get('query');
-  console.log(search);
 
   // fetch by first query
   useEffect(() => {

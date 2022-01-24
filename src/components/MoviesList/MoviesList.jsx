@@ -1,13 +1,9 @@
 import { useLocation } from 'react-router-dom';
 import { TrendMoviesList, MovieItem, LinkStyle } from './MovieList.styled';
 
-const linkStyle = {
- 
-};
-
 export default function MoviesList({ movies }) {
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   return (
     <TrendMoviesList>
       {movies.map(movie => (
@@ -15,7 +11,6 @@ export default function MoviesList({ movies }) {
           <LinkStyle
             to={`/movies/${movie.id}`}
             state={{ from: location }}
-            style={{linkStyle}}
           >
             {movie.original_title}
           </LinkStyle>

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import {
   FilmCard,
   Poster,
@@ -8,9 +8,11 @@ import {
   DatasTitle,
     AddTitle,
     AddList,
-  AddItem
+  AddItem,
+  LinkStyle
 } from './FilmDataCard.styled';
 export default function FilmDataCard({ film }) {
+  const location = useLocation();
   return (
     <>
       <FilmCard>
@@ -32,10 +34,10 @@ export default function FilmDataCard({ film }) {
       <AddTitle>Additional information</AddTitle>
       <AddList>
         <AddItem>
-          <Link to={`/movies/${film.id}/cast`}>Cast</Link>
+          <LinkStyle to={`/movies/${film.id}/cast`} state={location.state}>Cast</LinkStyle>
         </AddItem>
         <AddItem>
-          <Link to={`/movies/${film.id}/reviews`}>Reviews</Link>
+          <LinkStyle to={`/movies/${film.id}/reviews`} state={location.state}>Reviews</LinkStyle>
         </AddItem>
       </AddList>
     </>
