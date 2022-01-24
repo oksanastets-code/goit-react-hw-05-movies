@@ -14,7 +14,7 @@ export default function MoviesList({ movies }) {
         <MovieItem key={movie.id}>
           <LinkStyle
             to={`/movies/${movie.id}`}
-            state={{ from: location.pathname }}
+            state={{ from: location }}
             style={{linkStyle}}
           >
             {movie.original_title}
