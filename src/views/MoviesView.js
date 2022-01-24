@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-// import {useParams } from 'react-router-dom';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import * as moviesAPI from '../services/movies-api';
 import SearchBar from '../components/SearchBar/SearchBar';
@@ -12,8 +11,9 @@ export default function MoviesView({ keyword }) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  const search = searchParams.get('query'); // ▶ URLSearchParams {}
+  const search = searchParams.get('query');
   console.log(search);
+
   // fetch by first query
   useEffect(() => {
     if (query === '') {
@@ -24,6 +24,7 @@ export default function MoviesView({ keyword }) {
       .then(r => r.results)
       .then(setSearched);
   }, [query]);
+
   // fetch by go back
   useEffect(() => {
     if (search === null) {
