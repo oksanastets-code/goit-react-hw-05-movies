@@ -1,4 +1,11 @@
 import { useState } from 'react';
+import { BsSearch} from 'react-icons/bs'
+import {
+  SearchForm,
+  SearchFormButton,
+  SearchFormButtonLabel,
+  SearchFormInput
+} from './SearchBar.styled';
 
 export default function Searchbar({ onSubmit}) {
   const [keyWord, setKeyWord] = useState('');
@@ -18,19 +25,20 @@ export default function Searchbar({ onSubmit}) {
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <button type="submit">
-          <label>Search</label>
-        </button>
+      <SearchForm onSubmit={handleSubmit}>
+        <SearchFormButton type="submit">
+          <BsSearch/>
+          <SearchFormButtonLabel>Search</SearchFormButtonLabel>
+        </SearchFormButton>
 
-        <input
+        <SearchFormInput
           type="text"
           autoComplete="off"
           autoFocus
           placeholder="Search movies"
           onChange={handleKeyWordChange}
         />
-      </form>
+      </SearchForm>
     </>
   );
 }
