@@ -22,7 +22,7 @@ export default function FilmDataCard({ film }) {
         />
         <DetailsCard>
           <FilmTitle>
-            {film.original_title} ({film.release_date})
+            {film.original_title} ({film.release_date.slice(0, 4)})
           </FilmTitle>
           <Datas>User Score: {film.vote_average}</Datas>
           <DatasTitle>Overview</DatasTitle>
