@@ -1,9 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { useParams, useLocation, Outlet } from 'react-router-dom';
 import * as moviesAPI from '../services/movies-api';
 import BackButton from '../components/BackButton/BackButton';
-import FilmDataCard from '../components/FilmDataCard/FilmDataCard.jsx';
 
+const FilmDataCard = lazy(() =>
+  import(
+    '../components/FilmDataCard/FilmDataCard.jsx' /* webpackChunkName: "film-data-card" */
+  ),
+);
 export default function FilmDetailsView() {
   const location = useLocation();
   console.log(location);
@@ -19,7 +23,9 @@ export default function FilmDetailsView() {
   return (
     <>
       <BackButton location={location} />
-      {film && <FilmDataCard film={film} />}
+      <Suspense fallback={<h4>Loading film-data</h4>}>
+        {film && <FilmDataCard film={film} />}
+      </Suspense>
       <Outlet />
     </>
   );

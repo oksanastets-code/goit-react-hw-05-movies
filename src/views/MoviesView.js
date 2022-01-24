@@ -7,34 +7,19 @@ import MoviesList from '../components/MoviesList/MoviesList';
 
 export default function MoviesView() {
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams.get('q')); // ▶ URLSearchParams {}
+  console.log(searchParams.get('query')); // ▶ URLSearchParams {}
 
-  useEffect(() => {
-    // read the params on component load and when any changes occur
-    const currentParams = Object.fromEntries([...searchParams]);
-    // get new values on change
-    console.log('useEffect:', currentParams);
-    // update the search params programmatically
-    setSearchParams({ q: `${searchParams.get(`q`)}` });
-  }, [searchParams]);
+  const search = useLocation().search;
+  console.log(search);
+  const q = new URLSearchParams(search).get('query');
+  console.log(q);
 
   const location = useLocation();
-  // console.log(location);
-  // const navigate = useNavigate();
+  console.log(location);
+  const navigate = useNavigate();
 
   const [query, setQuery] = useState('');
   const [searched, setSearched] = useState([]);
-
-  // const memory = new URLSearchParams(location.search).get('query');
-  // console.log(memory);
-  // console.log(location.search);
-  // const rememberQuery = keyWord => {
-  //   navigate({
-  //     ...location,
-  //     search: `query=${keyWord}`
-  //   })
-
-  // }
 
   useEffect(() => {
     if (query === '') {
@@ -48,6 +33,7 @@ export default function MoviesView() {
 
   const handleFormSubmit = keyWord => {
     setQuery(keyWord);
+    setSearchParams(`query=${keyWord}`);
   };
   return (
     <>
