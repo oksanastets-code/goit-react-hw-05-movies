@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function Searchbar({ onSubmit }) {
+export default function Searchbar({ onSubmit}) {
   const [keyWord, setKeyWord] = useState('');
 
   const handleSubmit = e => {
@@ -10,7 +10,6 @@ export default function Searchbar({ onSubmit }) {
       return;
     }
       onSubmit(keyWord);
-    //   onMemory(keyWord);
     // setKeyWord('');
     // e.currentTarget.reset();
   };
