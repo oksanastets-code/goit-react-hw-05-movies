@@ -5,22 +5,16 @@ import * as moviesAPI from '../services/movies-api';
 import SearchBar from '../components/SearchBar/SearchBar';
 import MoviesList from '../components/MoviesList/MoviesList';
 
-export default function MoviesView() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams.get('query')); // ▶ URLSearchParams {}
-
-  const search = useLocation().search;
-  console.log(search);
-  const q = new URLSearchParams(search).get('query');
-  console.log(q);
-
-  const location = useLocation();
-  console.log(location);
-  const navigate = useNavigate();
-
+export default function MoviesView({ keyword }) {
   const [query, setQuery] = useState('');
   const [searched, setSearched] = useState([]);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
+  const search = searchParams.get('query'); // ▶ URLSearchParams {}
+  console.log(search);
+  // fetch by first query
   useEffect(() => {
     if (query === '') {
       return;
@@ -30,18 +24,24 @@ export default function MoviesView() {
       .then(r => r.results)
       .then(setSearched);
   }, [query]);
+  // fetch by go back
+  useEffect(() => {
+    if (search === null) {
+      return;
+    }
+    moviesAPI
+      .FetchSearchingFilms(search)
+      .then(r => r.results)
+      .then(setSearched);
+  }, [search]);
 
   const handleFormSubmit = keyWord => {
     setQuery(keyWord);
-    setSearchParams(`query=${keyWord}`);
+    navigate({ ...location, search: `query=${keyWord}` });
   };
   return (
     <>
-      <SearchBar
-        onSubmit={handleFormSubmit}
-        // onSubmit={rememberQuery}
-        // onMemory={rememberQuery}
-      />
+      <SearchBar onSubmit={handleFormSubmit} />
       {searched && <MoviesList movies={searched} />}
     </>
   );
