@@ -1,20 +1,26 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { TrendMoviesList, MovieItem, LinkStyle } from './MovieList.styled';
+
+const linkStyle = {
+ 
+};
+
 export default function MoviesList({ movies }) {
   const location = useLocation();
   console.log(location);
   return (
-    <ul>
+    <TrendMoviesList>
       {movies.map(movie => (
-        <li key={movie.id}>
-            <Link
-                  to={`/movies/${movie.id}`}
-                  state={{ from: location.pathname }}
-                //   search={{ from: location.search }}
-              >
-                  {movie.original_title}
-            </Link>
-        </li>
+        <MovieItem key={movie.id}>
+          <LinkStyle
+            to={`/movies/${movie.id}`}
+            state={{ from: location.pathname }}
+            style={{linkStyle}}
+          >
+            {movie.original_title}
+          </LinkStyle>
+        </MovieItem>
       ))}
-    </ul>
+    </TrendMoviesList>
   );
 }

@@ -1,9 +1,9 @@
 import Navigation from './Navigation';
-
+import { Header } from './AppBar.styled';
 export default function Appbar() {
   return (
-    <header >
+    <Header >
       <Navigation />
-    </header>
+    </Header>
   );
 }
