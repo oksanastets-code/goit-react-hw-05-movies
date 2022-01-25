@@ -12,16 +12,26 @@ export default function FilmDetailsView() {
   const location = useLocation();
   const { filmId } = useParams();
   const [film, setFilm] = useState(null);
+  const [genres, setGenres] = useState('');
 
   useEffect(() => {
-    moviesAPI.FetchFilmsDetails(filmId).then(r => setFilm(r));
+    moviesAPI.FetchFilmsDetails(filmId).then(setFilm);
   }, [filmId]);
+
+  useEffect(() => {
+    if (!film) {
+      return;
+    }
+    let names = film.genres;
+    const string = names.map(name => name.name).join(', ');
+    setGenres(string);
+  }, [film]);
 
   return (
     <>
       <BackButton location={location} />
       <Suspense fallback={<h4>Loading film-data</h4>}>
-        {film && <FilmDataCard film={film} />}
+        {film && <FilmDataCard film={film} genres={genres} />}
       </Suspense>
       <Outlet />
     </>

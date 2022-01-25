@@ -11,7 +11,7 @@ import {
   AddItem,
   LinkStyle
 } from './FilmDataCard.styled';
-export default function FilmDataCard({ film }) {
+export default function FilmDataCard({ film, genres }) {
   const location = useLocation();
   return (
     <>
@@ -28,7 +28,7 @@ export default function FilmDataCard({ film }) {
           <DatasTitle>Overview</DatasTitle>
           <Datas>{film.overview}</Datas>
           <DatasTitle>Genres</DatasTitle>
-          {/* <Datas>{film.genres}</Datas> */}
+          <Datas>{genres}</Datas>
         </DetailsCard>
       </FilmCard>
       <AddTitle>Additional information</AddTitle>
